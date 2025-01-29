@@ -3,85 +3,99 @@
         "id": 1,
         "nombre": "Bolso",
         "imagen": "./assets/imagenes/1.jpg",
-        "precio": 75000
+        "precio": 75000,
+        "categoria": "Accesorios"
     },
     {   
         "id": 2,
         "nombre": "Borcego",
         "imagen": "./assets/imagenes/2.jpg",
-        "precio": 55000
+        "precio": 55000,
+        "categoria": "Calzado"
     },
     {   
         "id": 3,
         "nombre": "Buzo",
         "imagen": "./assets/imagenes/3.jpg",
-        "precio": 95000
+        "precio": 95000,
+        "categoria": "Abrigos"
     },
     {   
         "id": 4,
         "nombre": "Camisa",
         "imagen": "./assets/imagenes/4.jpg",
-        "precio": 75000
+        "precio": 75000,
+        "categoria": "Camisas"
     },
     {   
         "id": 5,
         "nombre": "Cinturon",
         "imagen": "./assets/imagenes/5.jpg",
-        "precio": 55000
+        "precio": 55000,
+        "categoria": "Accesorios"
     },
     {   
         "id": 6,
         "nombre": "Conjunto Beige",
         "imagen": "./assets/imagenes/6.jpg",
-        "precio": 95000
+        "precio": 95000,
+        "categoria": "Conjuntos"
     },
     {   
         "id": 7,
         "nombre": "Camisa Celeste",
         "imagen": "./assets/imagenes/7.jpg",
-        "precio": 75000
+        "precio": 75000,
+        "categoria": "Camisas"
     },
     {   
         "id": 8,
         "nombre": "Camisa Jean Azul",
         "imagen": "./assets/imagenes/8.jpg",
-        "precio": 55000
+        "precio": 55000,
+        "categoria": "Camisas"
     },
     {   
         "id": 9,
         "nombre": "Chaleco",
         "imagen": "./assets/imagenes/9.jpg",
-        "precio": 95000
+        "precio": 95000,
+        "categoria": "Abrigos"
     },
     {   
         "id": 10,
         "nombre": "Conjunto Gris",
         "imagen": "./assets/imagenes/10.jpg",
-        "precio": 155000
+        "precio": 155000,
+        "categoria": "Conjuntos"
     },
     {   
         "id": 11,
         "nombre": "Campera Azul",
         "imagen": "./assets/imagenes/11.jpg",
-        "precio": 95000
+        "precio": 95000,
+        "categoria": "Abrigos"
     },
     {   
         "id": 12,
         "nombre": "Campera Celeste",
         "imagen": "./assets/imagenes/12.jpg",
-        "precio": 75000
+        "precio": 75000,
+        "categoria": "Abrigos"
     },
     {   
         "id": 13,
         "nombre": "Pollera Jean Celeste",
         "imagen": "./assets/imagenes/13.jpg",
-        "precio": 55000
+        "precio": 55000,
+        "categoria": "Pantalones"
     },
     {   
         "id": 14,
         "nombre": "Pollera Jean Gris",
         "imagen": "./assets/imagenes/14.jpg",
-        "precio": 95000
+        "precio": 95000,
+        "categoria": "Pantalones"
     }
 ]
 

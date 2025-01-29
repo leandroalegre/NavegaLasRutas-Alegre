@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import products from '../../productos.json';
 
-const ItemDetail = ({ productId }) => {
+export const ItemDetail = ({ productId }) => {
     const product = products.find(p => p.id === productId);
 
     return (
@@ -18,5 +18,3 @@ const ItemDetail = ({ productId }) => {
         </div>
     );
 };
-
-export default ItemDetail;

@@ -1,18 +1,20 @@
 import './App.css';
 import { Navbar } from "./components/layouts/navbar/Navbar";
 import { Footer } from './components/layouts/footer/Footer';
-import { ListaProps } from './components/common/ListaProps/ListaProps';
-import { Saludo } from './components/pages/Saludo/Saludo';
-import {ItemDetail } from './components/pages/ItemDetail/ItemDetail';
+import { ProductList } from './components/pages/ProductList/ProductList';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Saludo />
-      <ItemDetail/>
-      <Footer />
-    </div>
+    <CartProvider>
+      <div className="app-container">
+        <Navbar />
+        <main className="main-content">
+          <ProductList />
+          <Footer />
+        </main>
+      </div>
+    </CartProvider>
   );
 }
 
