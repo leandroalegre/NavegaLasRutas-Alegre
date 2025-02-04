@@ -20,9 +20,15 @@ export const CartWidget = () => {
         }
     };
 
+<<<<<<< HEAD
     const handleQuantityChange = (productId, currentQuantity, change, maxStock) => {
         const newQuantity = currentQuantity + change;
         if (newQuantity >= 1 && newQuantity <= maxStock) {
+=======
+    const handleQuantityChange = (productId, currentQuantity, change) => {
+        const newQuantity = currentQuantity + change;
+        if (newQuantity >= 1) {
+>>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
             updateQuantity(productId, newQuantity);
         }
     };
@@ -43,9 +49,15 @@ export const CartWidget = () => {
                                     <div className="item-details">
                                         <h4>{item.nombre}</h4>
                                         <div className="quantity-controls">
+<<<<<<< HEAD
                                             <button onClick={() => handleQuantityChange(item.id, item.quantity, -1, item.stock)}>-</button>
                                             <span>{item.quantity}</span>
                                             <button onClick={() => handleQuantityChange(item.id, item.quantity, 1, item.stock)}>+</button>
+=======
+                                            <button onClick={() => handleQuantityChange(item.id, item.quantity, -1)}>-</button>
+                                            <span>{item.quantity}</span>
+                                            <button onClick={() => handleQuantityChange(item.id, item.quantity, 1)}>+</button>
+>>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
                                         </div>
                                         <p>Precio: ${item.precio * item.quantity}</p>
                                     </div>
