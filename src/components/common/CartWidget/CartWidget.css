@@ -74,20 +74,6 @@
     text-align: right;
 }
 
-.checkout-btn {
-    background: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.checkout-btn:hover {
-    background: #2980b9;
-}
-
 .quantity-controls {
     display: flex;
     align-items: center;
@@ -95,36 +81,60 @@
     margin: 10px 0;
 }
 
-.quantity-controls button {
+.quantity-btn {
     background: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 4px;
     padding: 2px 8px;
     cursor: pointer;
     transition: all 0.2s;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.quantity-controls button:hover {
+.quantity-btn:not(:disabled):hover {
     background: #e9ecef;
+}
+
+.quantity-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .cart-actions {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
-.clear-cart-btn {
-    background: #e74c3c;
-    color: white;
-    border: none;
+.clear-cart-btn, .checkout-btn {
     padding: 10px 20px;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-weight: 500;
+}
+
+.clear-cart-btn {
+    background-color: #dc3545;
+    color: white;
 }
 
 .clear-cart-btn:hover {
-    background: #c0392b;
+    background-color: #c82333;
+}
+
+.checkout-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.checkout-btn:hover {
+    background-color: #218838;
 } 

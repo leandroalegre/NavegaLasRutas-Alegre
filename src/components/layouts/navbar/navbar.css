@@ -8,6 +8,7 @@
     top: 0;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    z-index: 1000;
 }
 
 .navbar-closed {
@@ -49,6 +50,20 @@
 }
 
 .nav-list li:hover {
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.nav-list li a:hover {
     background-color: #e9ecef;
     border-radius: 5px;
 }

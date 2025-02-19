@@ -1,5 +1,6 @@
 import { useCart } from '../../../context/CartContext';
 import './CartWidget.css';
+import { useNavigate } from 'react-router-dom';
 
 export const CartWidget = () => {
     const { 
@@ -11,6 +12,7 @@ export const CartWidget = () => {
         isCartOpen, 
         setIsCartOpen 
     } = useCart();
+    const navigate = useNavigate();
 
     if (!isCartOpen) return null;
 
@@ -20,17 +22,16 @@ export const CartWidget = () => {
         }
     };
 
-<<<<<<< HEAD
     const handleQuantityChange = (productId, currentQuantity, change, maxStock) => {
         const newQuantity = currentQuantity + change;
         if (newQuantity >= 1 && newQuantity <= maxStock) {
-=======
-    const handleQuantityChange = (productId, currentQuantity, change) => {
-        const newQuantity = currentQuantity + change;
-        if (newQuantity >= 1) {
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
             updateQuantity(productId, newQuantity);
         }
+    };
+
+    const handleCheckout = () => {
+        setIsCartOpen(false);
+        navigate('/checkout');
     };
 
     return (
@@ -49,15 +50,21 @@ export const CartWidget = () => {
                                     <div className="item-details">
                                         <h4>{item.nombre}</h4>
                                         <div className="quantity-controls">
-<<<<<<< HEAD
-                                            <button onClick={() => handleQuantityChange(item.id, item.quantity, -1, item.stock)}>-</button>
+                                            <button 
+                                                className="quantity-btn"
+                                                onClick={() => handleQuantityChange(item.id, item.quantity, -1, item.stock)}
+                                                disabled={item.quantity <= 1}
+                                            >
+                                                -
+                                            </button>
                                             <span>{item.quantity}</span>
-                                            <button onClick={() => handleQuantityChange(item.id, item.quantity, 1, item.stock)}>+</button>
-=======
-                                            <button onClick={() => handleQuantityChange(item.id, item.quantity, -1)}>-</button>
-                                            <span>{item.quantity}</span>
-                                            <button onClick={() => handleQuantityChange(item.id, item.quantity, 1)}>+</button>
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
+                                            <button 
+                                                className="quantity-btn"
+                                                onClick={() => handleQuantityChange(item.id, item.quantity, 1, item.stock)}
+                                                disabled={item.quantity >= item.stock}
+                                            >
+                                                +
+                                            </button>
                                         </div>
                                         <p>Precio: ${item.precio * item.quantity}</p>
                                     </div>
@@ -76,7 +83,9 @@ export const CartWidget = () => {
                                 <button className="clear-cart-btn" onClick={clearCart}>
                                     Vaciar Carrito
                                 </button>
-                                <button className="checkout-btn">Finalizar Compra</button>
+                                <button className="checkout-btn" onClick={handleCheckout}>
+                                    Finalizar Compra
+                                </button>
                             </div>
                         </div>
                     </>

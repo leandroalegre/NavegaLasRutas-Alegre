@@ -2,170 +2,115 @@
     {   
         "id": 1,
         "nombre": "Bolso",
-        "imagen": "./assets/imagenes/1.jpg",
+        "imagen": "/assets/imagenes/1.jpg",
         "precio": 75000,
-<<<<<<< HEAD
         "categoria": "Accesorios",
         "stock": 10
-=======
-        "categoria": "Accesorios"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 2,
         "nombre": "Borcego",
-        "imagen": "./assets/imagenes/2.jpg",
+        "imagen": "/assets/imagenes/2.jpg",
         "precio": 55000,
-<<<<<<< HEAD
         "categoria": "Calzado",
         "stock": 5
-=======
-        "categoria": "Calzado"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
+
     },
     {   
         "id": 3,
         "nombre": "Buzo",
-        "imagen": "./assets/imagenes/3.jpg",
+        "imagen": "/assets/imagenes/3.jpg",
         "precio": 95000,
-<<<<<<< HEAD
         "categoria": "Abrigos",
         "stock": 8
-=======
-        "categoria": "Abrigos"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 4,
         "nombre": "Camisa",
-        "imagen": "./assets/imagenes/4.jpg",
+        "imagen": "/assets/imagenes/4.jpg",
         "precio": 75000,
-<<<<<<< HEAD
         "categoria": "Camisas",
         "stock": 12
-=======
-        "categoria": "Camisas"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 5,
         "nombre": "Cinturon",
-        "imagen": "./assets/imagenes/5.jpg",
+        "imagen": "/assets/imagenes/5.jpg",
         "precio": 55000,
-<<<<<<< HEAD
         "categoria": "Accesorios",
         "stock": 15
-=======
-        "categoria": "Accesorios"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 6,
         "nombre": "Conjunto Beige",
-        "imagen": "./assets/imagenes/6.jpg",
+        "imagen": "/assets/imagenes/6.jpg",
         "precio": 95000,
-<<<<<<< HEAD
         "categoria": "Conjuntos",
         "stock": 7
-=======
-        "categoria": "Conjuntos"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 7,
         "nombre": "Camisa Celeste",
-        "imagen": "./assets/imagenes/7.jpg",
+        "imagen": "/assets/imagenes/7.jpg",
         "precio": 75000,
-<<<<<<< HEAD
         "categoria": "Camisas",
         "stock": 9
-=======
-        "categoria": "Camisas"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 8,
         "nombre": "Camisa Jean Azul",
-        "imagen": "./assets/imagenes/8.jpg",
+        "imagen": "/assets/imagenes/8.jpg",
         "precio": 55000,
-<<<<<<< HEAD
         "categoria": "Camisas",
         "stock": 11
-=======
-        "categoria": "Camisas"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 9,
         "nombre": "Chaleco",
-        "imagen": "./assets/imagenes/9.jpg",
+        "imagen": "/assets/imagenes/9.jpg",
         "precio": 95000,
-<<<<<<< HEAD
         "categoria": "Abrigos",
         "stock": 6
-=======
-        "categoria": "Abrigos"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 10,
         "nombre": "Conjunto Gris",
-        "imagen": "./assets/imagenes/10.jpg",
+        "imagen": "/assets/imagenes/10.jpg",
         "precio": 155000,
-<<<<<<< HEAD
         "categoria": "Conjuntos",
         "stock": 4
-=======
-        "categoria": "Conjuntos"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 11,
         "nombre": "Campera Azul",
-        "imagen": "./assets/imagenes/11.jpg",
+        "imagen": "/assets/imagenes/11.jpg",
         "precio": 95000,
-<<<<<<< HEAD
         "categoria": "Abrigos",
         "stock": 10
-=======
-        "categoria": "Abrigos"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 12,
         "nombre": "Campera Celeste",
-        "imagen": "./assets/imagenes/12.jpg",
+        "imagen": "/assets/imagenes/12.jpg",
         "precio": 75000,
-<<<<<<< HEAD
         "categoria": "Abrigos",
         "stock": 5
-=======
-        "categoria": "Abrigos"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 13,
         "nombre": "Pollera Jean Celeste",
-        "imagen": "./assets/imagenes/13.jpg",
+        "imagen": "/assets/imagenes/13.jpg",
         "precio": 55000,
-<<<<<<< HEAD
         "categoria": "Pantalones",
         "stock": 8
-=======
-        "categoria": "Pantalones"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     },
     {   
         "id": 14,
         "nombre": "Pollera Jean Gris",
-        "imagen": "./assets/imagenes/14.jpg",
+        "imagen": "/assets/imagenes/14.jpg",
         "precio": 95000,
-<<<<<<< HEAD
         "categoria": "Pantalones",
         "stock": 7
-=======
-        "categoria": "Pantalones"
->>>>>>> edabafc0991d472edefee54d819bf31f9571e43a
     }
 ]
 

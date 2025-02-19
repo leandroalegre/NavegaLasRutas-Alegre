@@ -1,24 +1,49 @@
 import { createContext, useState, useContext, useEffect } from 'react';
+import { updateProductStock, getCurrentStock } from '../services/firebaseServices';
 
 const CartContext = createContext();
 
+export const useCart = () => {
+    const context = useContext(CartContext);
+    if (!context) {
+        throw new Error('useCart debe ser usado dentro de un CartProvider');
+    }
+    return context;
+};
+
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState(() => {
-        // Intentar obtener el carrito del localStorage al iniciar
-        const savedCart = localStorage.getItem('cart');
-        return savedCart ? JSON.parse(savedCart) : [];
-    });
+    const [cart, setCart] = useState([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
-    // Guardar en localStorage cada vez que el carrito cambie
+    // Verificar y actualizar stock en tiempo real
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
+        const updateStockInfo = async () => {
+            if (cart.length > 0) {
+                const updatedCart = await Promise.all(
+                    cart.map(async (item) => {
+                        try {
+                            const currentStock = await getCurrentStock(item.id);
+                            return { ...item, stock: currentStock };
+                        } catch (error) {
+                            console.error(`Error actualizando stock para ${item.id}:`, error);
+                            return item;
+                        }
+                    })
+                );
+                setCart(updatedCart);
+            }
+        };
+
+        updateStockInfo();
+    }, []);
 
     const addToCart = (product) => {
         setCart(prevCart => {
             const existingProduct = prevCart.find(item => item.id === product.id);
             if (existingProduct) {
+                if (existingProduct.quantity >= product.stock) {
+                    return prevCart;
+                }
                 return prevCart.map(item =>
                     item.id === product.id
                         ? { ...item, quantity: item.quantity + 1 }
@@ -35,7 +60,6 @@ export const CartProvider = ({ children }) => {
 
     const clearCart = () => {
         setCart([]);
-        localStorage.removeItem('cart');
     };
 
     const updateQuantity = (productId, newQuantity) => {
@@ -49,8 +73,20 @@ export const CartProvider = ({ children }) => {
         );
     };
 
+    const updateStock = async () => {
+        try {
+            for (const item of cart) {
+                await updateProductStock(item.id, item.stock - item.quantity);
+            }
+            return true;
+        } catch (error) {
+            console.error('Error actualizando stock:', error);
+            return false;
+        }
+    };
+
     const getTotalItems = () => {
-        return cart.reduce((acc, item) => acc + item.quantity, 0);
+        return cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
     };
 
     const getTotalPrice = () => {
@@ -64,6 +100,7 @@ export const CartProvider = ({ children }) => {
             removeFromCart,
             clearCart,
             updateQuantity,
+            updateStock,
             isCartOpen,
             setIsCartOpen,
             getTotalItems,
@@ -72,6 +109,4 @@ export const CartProvider = ({ children }) => {
             {children}
         </CartContext.Provider>
     );
-};
-
-export const useCart = () => useContext(CartContext); 
+}; 
