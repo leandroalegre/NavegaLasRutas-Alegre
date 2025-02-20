@@ -5,7 +5,7 @@ import './ProductList.css';
 
 const getImageUrl = (id) => {
     try {
-        return new URL(`../../assets/imagenes/${id}.jpg`, import.meta.url).href;
+        return new URL(`../../../assets/imagenes/${id}.jpg`, import.meta.url).href;
     } catch (error) {
         console.error(`Error cargando imagen ${id}:`, error);
         return '';
@@ -72,7 +72,7 @@ export const ProductList = () => {
                     <div key={product.docId} className={`product-card ${isOutOfStock(product) ? 'out-of-stock' : ''}`}>
                         <div className="product-image-container">
                             <img 
-                                src={getImageUrl(product.id)}
+                                src={`/imagenes/${product.id}.jpg`}
                                 alt={product.nombre}
                                 className={isOutOfStock(product) ? 'grayscale' : ''}
                             />
