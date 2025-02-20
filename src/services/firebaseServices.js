@@ -6,7 +6,10 @@ export const getProducts = async () => {
   try {
     const productsCollection = collection(db, 'productos');
     const snapshot = await getDocs(productsCollection);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return snapshot.docs.map(doc => ({
+      docId: doc.id,
+      ...doc.data()
+    }));
   } catch (error) {
     console.error("Error obteniendo productos:", error);
     throw error;
@@ -58,17 +61,28 @@ export const updateProductStock = async (productId, newStock) => {
 // Crear una nueva orden
 export const createOrder = async (orderData) => {
   try {
-    // Verificar stock actual y reservar
+    console.log('Datos de la orden recibidos:', orderData);
+
+    // Verificar que los items tengan IDs válidos
+    if (!orderData.items || !Array.isArray(orderData.items)) {
+      throw new Error('Datos de orden inválidos');
+    }
+
+    // Verificar stock y validar productos
     for (const item of orderData.items) {
-      const productRef = doc(db, 'productos', item.id);
+      console.log('Verificando producto:', item);
+
+      const productRef = doc(db, 'productos', item.docId);
       const productSnap = await getDoc(productRef);
       
       if (!productSnap.exists()) {
+        console.error(`Producto no encontrado en Firestore. ID: ${item.docId}`);
+        console.error('Datos del producto:', item);
         throw new Error(`Producto no encontrado: ${item.nombre}`);
       }
       
-      const currentStock = productSnap.data().stock;
-      if (currentStock < item.quantity) {
+      const productData = productSnap.data();
+      if (productData.stock < item.quantity) {
         throw new Error(`Stock insuficiente para: ${item.nombre}`);
       }
     }
@@ -76,16 +90,27 @@ export const createOrder = async (orderData) => {
     // Crear la orden
     const ordersCollection = collection(db, 'orders');
     const order = {
-      ...orderData,
+      buyer: orderData.buyer,
+      items: orderData.items.map(item => ({
+        id: item.id,
+        nombre: item.nombre,
+        precio: item.precio,
+        quantity: item.quantity
+      })),
+      total: orderData.total,
       date: serverTimestamp(),
       status: 'pending'
     };
 
+    console.log('Orden a crear:', order);
+
+    // Guardar la orden
     const docRef = await addDoc(ordersCollection, order);
+    console.log('Orden creada con ID:', docRef.id);
 
     // Actualizar stock
     for (const item of orderData.items) {
-      const productRef = doc(db, 'productos', item.id);
+      const productRef = doc(db, 'productos', item.docId);
       const productSnap = await getDoc(productRef);
       const currentStock = productSnap.data().stock;
       

@@ -1,26 +1,49 @@
-import { useState } from 'react';
-import products from '../../productos.json';
-import './ProductList.css';
+import { useState, useEffect } from 'react';
 import { useCart } from '../../../context/CartContext';
+import { getProducts } from '../../../services/firebaseServices';
+import './ProductList.css';
 
 export const ProductList = () => {
     const [selectedCategory, setSelectedCategory] = useState('Todos');
     const { addToCart, cart } = useCart();
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // Obtener categorías únicas
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const productsData = await getProducts();
+                const productsWithIds = productsData.map(product => ({
+                    ...product,
+                    id: product.id || product.nombre.toLowerCase()
+                }));
+                console.log('Productos cargados:', productsWithIds);
+                setProducts(productsWithIds);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error cargando productos:', error);
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
     const categories = ['Todos', ...new Set(products.map(product => product.categoria))];
 
-    // Filtrar productos por categoría
     const filteredProducts = selectedCategory === 'Todos'
         ? products
         : products.filter(product => product.categoria === selectedCategory);
 
-    // Verificar si un producto está sin stock
     const isOutOfStock = (product) => {
         const cartItem = cart.find(item => item.id === product.id);
         const cartQuantity = cartItem ? cartItem.quantity : 0;
         return product.stock <= cartQuantity;
     };
+
+    if (loading) {
+        return <div className="loading">Cargando productos...</div>;
+    }
 
     return (
         <div className="product-list-container">
@@ -37,10 +60,10 @@ export const ProductList = () => {
             </div>
             <div className="products-grid">
                 {filteredProducts.map(product => (
-                    <div key={product.id} className={`product-card ${isOutOfStock(product) ? 'out-of-stock' : ''}`}>
+                    <div key={product.docId} className={`product-card ${isOutOfStock(product) ? 'out-of-stock' : ''}`}>
                         <div className="product-image-container">
                             <img 
-                                src={`/src/assets/imagenes/${product.id}.jpg`} 
+                                src={`/src/assets/imagenes/${product.id}.jpg`}
                                 alt={product.nombre}
                                 className={isOutOfStock(product) ? 'grayscale' : ''}
                             />
@@ -55,7 +78,7 @@ export const ProductList = () => {
                         <p className="price">${product.precio}</p>
                         <button
                             className="add-to-cart-button"
-                            onClick={() => addToCart(product)}
+                            onClick={() => addToCart({...product, docId: product.docId})}
                             disabled={isOutOfStock(product)}
                         >
                             {isOutOfStock(product) ? 'Sin Stock' : 'Agregar al carrito'}

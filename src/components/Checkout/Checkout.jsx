@@ -40,30 +40,36 @@ const Checkout = () => {
                     phone: formData.telefono
                 },
                 items: cart.map(item => ({
+                    docId: item.docId,
                     id: item.id,
                     nombre: item.nombre,
                     precio: item.precio,
                     quantity: item.quantity
                 })),
-                total: getTotalPrice(),
-                date: new Date().toISOString()
+                total: getTotalPrice()
             };
+
+            console.log('Enviando orden:', orderData);
+            console.log('Items en el carrito:', cart);
 
             const orderId = await createOrder(orderData);
             
-            // Si llegamos aquí, la orden se creó exitosamente
-            setOrderStatus({
-                loading: false,
-                error: null,
-                orderId: orderId
-            });
-            clearCart();
+            if (orderId) {
+                setOrderStatus({
+                    loading: false,
+                    error: null,
+                    orderId: orderId
+                });
+                clearCart();
+            } else {
+                throw new Error('No se pudo crear la orden');
+            }
 
         } catch (error) {
             console.error('Error en checkout:', error);
             setOrderStatus({
                 loading: false,
-                error: 'Error al procesar la orden. Por favor, intente nuevamente.',
+                error: `Error al procesar la orden: ${error.message}`,
                 orderId: null
             });
         }

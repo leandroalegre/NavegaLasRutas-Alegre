@@ -46,7 +46,10 @@ export const CartWidget = () => {
                         <div className="cart-items">
                             {cart.map(item => (
                                 <div key={item.id} className="cart-item">
-                                    <img src={`/src/assets/imagenes/${item.id}.jpg`} alt={item.nombre} />
+                                    <img 
+                                        src={`/src/assets/imagenes/${item.id}.jpg`}
+                                        alt={item.nombre}
+                                    />
                                     <div className="item-details">
                                         <h4>{item.nombre}</h4>
                                         <div className="quantity-controls">

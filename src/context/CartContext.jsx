@@ -1,17 +1,18 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { updateProductStock, getCurrentStock } from '../services/firebaseServices';
+import PropTypes from 'prop-types';
 
 const CartContext = createContext();
 
-export const useCart = () => {
+export function useCart() {
     const context = useContext(CartContext);
     if (!context) {
         throw new Error('useCart debe ser usado dentro de un CartProvider');
     }
     return context;
-};
+}
 
-export const CartProvider = ({ children }) => {
+export function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -109,4 +110,8 @@ export const CartProvider = ({ children }) => {
             {children}
         </CartContext.Provider>
     );
+}
+
+CartProvider.propTypes = {
+    children: PropTypes.node.isRequired
 }; 
