@@ -1,5 +1,7 @@
 # E-commerce React + Firebase
 
+[Ver Demo](https://trabajo-final-alegre-o3d0grc7w-leandro-alegres-projects.vercel.app/) <!-- Reemplaza con tu URL de Vercel -->
+
 ## Descripción
 
 Aplicación de comercio electrónico desarrollada con React, Vite y Firebase. Permite a los usuarios navegar por productos, gestionar un carrito de compras y realizar pedidos con persistencia en tiempo real, actualizando el stock en cada pedido.

@@ -4,17 +4,17 @@ import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBVSTculvW2hem6H2GqKyyd95yiu5zgoqs",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
 
-  authDomain: "turismo-53609.firebaseapp.com",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
 
-  projectId: "turismo-53609",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
 
-  storageBucket: "turismo-53609.firebasestorage.app",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
 
-  messagingSenderId: "544468216617",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
 
-  appId: "1:544468216617:web:062612995ca580e9102538"
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 
 };
 

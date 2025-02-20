@@ -3,6 +3,15 @@ import { useCart } from '../../../context/CartContext';
 import { getProducts } from '../../../services/firebaseServices';
 import './ProductList.css';
 
+const getImageUrl = (id) => {
+    try {
+        return new URL(`../../assets/imagenes/${id}.jpg`, import.meta.url).href;
+    } catch (error) {
+        console.error(`Error cargando imagen ${id}:`, error);
+        return '';
+    }
+};
+
 export const ProductList = () => {
     const [selectedCategory, setSelectedCategory] = useState('Todos');
     const { addToCart, cart } = useCart();
@@ -63,7 +72,7 @@ export const ProductList = () => {
                     <div key={product.docId} className={`product-card ${isOutOfStock(product) ? 'out-of-stock' : ''}`}>
                         <div className="product-image-container">
                             <img 
-                                src={`/src/assets/imagenes/${product.id}.jpg`}
+                                src={getImageUrl(product.id)}
                                 alt={product.nombre}
                                 className={isOutOfStock(product) ? 'grayscale' : ''}
                             />
