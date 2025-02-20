@@ -55,16 +55,29 @@
 }
 
 .item-details h4 {
-    margin: 0;
-    color: #333;
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.item-details p {
+    margin: 5px 0;
+    color: #666;
 }
 
 .remove-item {
     background: none;
     border: none;
     color: #ff4444;
-    cursor: pointer;
     font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.remove-item:hover {
+    color: #cc0000;
 }
 
 .cart-total {
@@ -82,27 +95,31 @@
 }
 
 .quantity-btn {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    padding: 2px 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
 }
 
-.quantity-btn:not(:disabled):hover {
-    background: #e9ecef;
+.quantity-btn:hover:not(:disabled) {
+    background-color: #e0e0e0;
 }
 
 .quantity-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+.quantity-controls span {
+    min-width: 20px;
+    text-align: center;
 }
 
 .cart-actions {

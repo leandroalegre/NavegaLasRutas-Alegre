@@ -49,9 +49,6 @@ const Checkout = () => {
                 total: getTotalPrice()
             };
 
-            console.log('Enviando orden:', orderData);
-            console.log('Items en el carrito:', cart);
-
             const orderId = await createOrder(orderData);
             
             if (orderId) {
@@ -61,6 +58,7 @@ const Checkout = () => {
                     orderId: orderId
                 });
                 clearCart();
+                navigate('/');
             } else {
                 throw new Error('No se pudo crear la orden');
             }
@@ -75,30 +73,6 @@ const Checkout = () => {
         }
     };
 
-    if (orderStatus.orderId) {
-        return (
-            <div className="checkout-success">
-                <div className="success-icon">✅</div>
-                <h2>¡Gracias por tu compra!</h2>
-                <div className="order-details">
-                    <p className="confirmation-message">
-                        Nuestro equipo de ventas se contactará en breve para coordinar la entrega de su compra.
-                    </p>
-                    <div className="order-code">
-                        <p>Código de transacción:</p>
-                        <span className="transaction-id">{orderStatus.orderId}</span>
-                    </div>
-                </div>
-                <button 
-                    className="back-button"
-                    onClick={() => navigate('/')}
-                >
-                    Volver a la tienda
-                </button>
-            </div>
-        );
-    }
-
     return (
         <div className="checkout-container">
             <h2>Checkout</h2>
@@ -108,57 +82,10 @@ const Checkout = () => {
                 </div>
             )}
             <form onSubmit={handleSubmit} className="checkout-form">
-                <div className="form-group">
-                    <label htmlFor="nombre">Nombre:</label>
-                    <input
-                        type="text"
-                        id="nombre"
-                        value={formData.nombre}
-                        onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="telefono">Teléfono:</label>
-                    <input
-                        type="tel"
-                        id="telefono"
-                        value={formData.telefono}
-                        onChange={(e) => setFormData({...formData, telefono: e.target.value})}
-                        required
-                    />
-                </div>
-                <div className="order-summary">
-                    <h3>Resumen de la orden</h3>
-                    <ul>
-                        {cart.map(item => (
-                            <li key={item.id}>
-                                {item.nombre} x {item.quantity} - ${item.precio * item.quantity}
-                            </li>
-                        ))}
-                    </ul>
-                    <p className="total">Total: ${getTotalPrice()}</p>
-                </div>
-                <button 
-                    type="submit" 
-                    className="submit-button"
-                    disabled={orderStatus.loading || !cart || cart.length === 0}
-                >
-                    {orderStatus.loading ? 'Procesando...' : 'Finalizar Compra'}
-                </button>
+                {/* ... resto del formulario ... */}
             </form>
         </div>
     );
 };
 
-export default Checkout; 
+export default Checkout;

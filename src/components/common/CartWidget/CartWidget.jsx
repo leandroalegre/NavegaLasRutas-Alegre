@@ -2,15 +2,6 @@ import { useCart } from '../../../context/CartContext';
 import './CartWidget.css';
 import { useNavigate } from 'react-router-dom';
 
-const getImageUrl = (id) => {
-    try {
-        return new URL(`../../../assets/imagenes/${id}.jpg`, import.meta.url).href;
-    } catch (error) {
-        console.error(`Error cargando imagen ${id}:`, error);
-        return '';
-    }
-};
-
 export const CartWidget = () => {
     const { 
         cart, 

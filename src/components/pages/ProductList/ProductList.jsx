@@ -4,12 +4,7 @@ import { getProducts } from '../../../services/firebaseServices';
 import './ProductList.css';
 
 const getImageUrl = (id) => {
-    try {
-        return new URL(`../../../assets/imagenes/${id}.jpg`, import.meta.url).href;
-    } catch (error) {
-        console.error(`Error cargando imagen ${id}:`, error);
-        return '';
-    }
+    return new URL(`../../../public/imagenes/${id}.jpg`, import.meta.url).href;
 };
 
 export const ProductList = () => {
@@ -22,12 +17,7 @@ export const ProductList = () => {
         const fetchProducts = async () => {
             try {
                 const productsData = await getProducts();
-                const productsWithIds = productsData.map(product => ({
-                    ...product,
-                    id: product.id || product.nombre.toLowerCase()
-                }));
-                console.log('Productos cargados:', productsWithIds);
-                setProducts(productsWithIds);
+                setProducts(productsData);
                 setLoading(false);
             } catch (error) {
                 console.error('Error cargando productos:', error);
@@ -85,9 +75,10 @@ export const ProductList = () => {
                         <h3>{product.nombre}</h3>
                         <p className="category">{product.categoria}</p>
                         <p className="price">${product.precio}</p>
+                        <p className="stock">Stock disponible: {product.stock}</p>
                         <button
                             className="add-to-cart-button"
-                            onClick={() => addToCart({...product, docId: product.docId})}
+                            onClick={() => addToCart(product)}
                             disabled={isOutOfStock(product)}
                         >
                             {isOutOfStock(product) ? 'Sin Stock' : 'Agregar al carrito'}
