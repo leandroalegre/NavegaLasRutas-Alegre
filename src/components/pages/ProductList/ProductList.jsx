@@ -3,10 +3,6 @@ import { useCart } from '../../../context/CartContext';
 import { getProducts } from '../../../services/firebaseServices';
 import './ProductList.css';
 
-const getImageUrl = (id) => {
-    return new URL(`../../../public/imagenes/${id}.jpg`, import.meta.url).href;
-};
-
 export const ProductList = () => {
     const [selectedCategory, setSelectedCategory] = useState('Todos');
     const { addToCart, cart } = useCart();
@@ -17,6 +13,7 @@ export const ProductList = () => {
         const fetchProducts = async () => {
             try {
                 const productsData = await getProducts();
+                console.log('Productos cargados:', productsData);
                 setProducts(productsData);
                 setLoading(false);
             } catch (error) {

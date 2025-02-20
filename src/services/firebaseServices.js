@@ -61,15 +61,23 @@ export const updateProductStock = async (productId, newStock) => {
 // Crear una nueva orden
 export const createOrder = async (orderData) => {
   try {
+    console.log('Datos de la orden recibidos:', orderData);
+
+    // Verificar que los items tengan IDs válidos
     if (!orderData.items || !Array.isArray(orderData.items)) {
       throw new Error('Datos de orden inválidos');
     }
 
+    // Verificar stock y validar productos
     for (const item of orderData.items) {
+      console.log('Verificando producto:', item);
+
       const productRef = doc(db, 'productos', item.docId);
       const productSnap = await getDoc(productRef);
       
       if (!productSnap.exists()) {
+        console.error(`Producto no encontrado en Firestore. ID: ${item.docId}`);
+        console.error('Datos del producto:', item);
         throw new Error(`Producto no encontrado: ${item.nombre}`);
       }
       
@@ -79,6 +87,7 @@ export const createOrder = async (orderData) => {
       }
     }
 
+    // Crear la orden
     const ordersCollection = collection(db, 'orders');
     const order = {
       buyer: orderData.buyer,
@@ -93,8 +102,13 @@ export const createOrder = async (orderData) => {
       status: 'pending'
     };
 
-    const docRef = await addDoc(ordersCollection, order);
+    console.log('Orden a crear:', order);
 
+    // Guardar la orden
+    const docRef = await addDoc(ordersCollection, order);
+    console.log('Orden creada con ID:', docRef.id);
+
+    // Actualizar stock
     for (const item of orderData.items) {
       const productRef = doc(db, 'productos', item.docId);
       const productSnap = await getDoc(productRef);
@@ -107,6 +121,7 @@ export const createOrder = async (orderData) => {
 
     return docRef.id;
   } catch (error) {
+    console.error("Error detallado:", error);
     throw error;
   }
 };
