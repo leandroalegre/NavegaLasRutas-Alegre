@@ -1,54 +1,89 @@
-# Nombre del Proyecto
+# E-commerce React + Firebase
 
 ## Descripción
 
-Este proyecto es una aplicación de comercio electrónico desarrollada con React y Vite. Permite a los usuarios navegar por una lista de productos, agregar productos a un carrito de compras y realizar compras basadas en el stock disponible.
+Aplicación de comercio electrónico desarrollada con React, Vite y Firebase. Permite a los usuarios navegar por productos, gestionar un carrito de compras y realizar pedidos con persistencia en tiempo real, actualizando el stock en cada pedido.
 
 ## Características
 
-- **Catálogo de Productos**: Muestra una lista de productos con detalles como nombre, imagen, precio, categoría y stock.
-- **Carrito de Compras**: Permite a los usuarios agregar productos al carrito, actualizar cantidades y eliminar productos.
-- **Control de Stock**: Asegura que los usuarios no puedan agregar más productos al carrito de los que hay en stock.
-- **Persistencia de Datos**: Utiliza `localStorage` para guardar el estado del carrito entre sesiones.
-- **Variables de Entorno**: Configuración de variables de entorno para gestionar configuraciones sensibles.
+- **Catálogo de Productos**: 
+  - Visualización y filtrado por categorías
+  - Vista detallada de cada producto
+  - Control de stock en tiempo real
+- **Carrito de Compras**: 
+  - Gestión completa con actualización en tiempo real
+  - Persistencia de datos
+  - Validación de stock
+- **Proceso de Checkout**: 
+  - Formulario de contacto
+  - Validación de datos
+  - Confirmación de orden con ID
+- **Firebase Integration**:
+  - Base de datos en tiempo real
+  - Gestión de órdenes
+  - Control de stock automático
 
-## Componentes Principales
+## Tecnologías Utilizadas
 
-- **`CartWidget`**: Componente que muestra el contenido del carrito y permite la gestión de productos en el mismo.
-- **`ItemDetail`**: Componente que muestra los detalles de un producto individual.
-- **`CartContext`**: Contexto de React que maneja el estado global del carrito de compras.
-- **`productos.json`**: Archivo JSON que contiene la lista de productos disponibles.
+- React 18
+- Vite
+- Firebase/Firestore
+- React Router DOM
+- Context API
+- CSS Modules
 
 ## Instalación
 
 1. Clona el repositorio:
-
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone https://github.com/leandroalegre/TrabajoFinal-Alegre.git
    ```
-
-2. Navega al directorio del proyecto:
-
+2. Instala las dependencias:
    ```bash
-   cd tu-repositorio
-   ```
-
-3. Instala las dependencias:
-
-   ```bash
+   cd TrabajoFinal-Alegre
    npm install
    ```
-
-## Uso
-
-1. Inicia el servidor de desarrollo:
-
+3. Configura las variables de entorno en `.env`:
+   ```
+   VITE_FIREBASE_API_KEY=tu-api-key
+   VITE_FIREBASE_AUTH_DOMAIN=tu-auth-domain
+   VITE_FIREBASE_PROJECT_ID=tu-project-id
+   VITE_FIREBASE_STORAGE_BUCKET=tu-storage-bucket
+   VITE_FIREBASE_MESSAGING_SENDER_ID=tu-sender-id
+   VITE_FIREBASE_APP_ID=tu-app-id
+   ```
+4. Inicia el servidor de desarrollo:
    ```bash
    npm run dev
    ```
 
-2. Abre tu navegador y visita `http://localhost:5173` para ver la aplicación en acción.
+## Estructura del Proyecto
 
-## Variables de Entorno
+```
+src/
+  ├── assets/
+  │   └── imagenes/      # Imágenes de productos
+  ├── components/
+  │   ├── common/        # Componentes reutilizables
+  │   ├── layouts/       # Componentes de estructura
+  │   └── pages/         # Componentes de página
+  ├── context/           # Contextos de React
+  ├── services/          # Servicios de Firebase
+  └── App.jsx            # Componente principal
+```
 
-Crea un archivo `.env` en la raíz del proyecto y define las siguientes variables:
+## Funcionalidades
+
+- Navegación entre categorías
+- Filtrado de productos
+- Carrito de compras persistente
+- Control de stock en tiempo real
+- Proceso de checkout
+- Generación de órdenes en Firestore
+- Actualización automática de stock
+
+## Autor
+
+Leandro Alegre
+
+
