@@ -49,19 +49,16 @@ const Checkout = () => {
                 total: getTotalPrice()
             };
 
-            console.log('Enviando orden:', orderData);
-            console.log('Items en el carrito:', cart);
 
             const orderId = await createOrder(orderData);
             
             if (orderId) {
+                clearCart();
                 setOrderStatus({
                     loading: false,
                     error: null,
                     orderId: orderId
                 });
-                clearCart();
-                navigate('/');
             } else {
                 throw new Error('No se pudo crear la orden');
             }
@@ -79,10 +76,26 @@ const Checkout = () => {
     if (orderStatus.orderId) {
         return (
             <div className="checkout-success">
+                <div className="success-icon">✅</div>
                 <h2>¡Gracias por tu compra!</h2>
-                <p>Tu orden ha sido procesada con éxito.</p>
-                <p>Número de orden: {orderStatus.orderId}</p>
-                <button onClick={() => navigate('/')}>Volver a la tienda</button>
+                <div className="order-details">
+                    <p className="confirmation-message">
+                        Tu orden ha sido procesada con éxito.
+                    </p>
+                    <div className="order-code">
+                        <p>Código de orden:</p>
+                        <span className="transaction-id">{orderStatus.orderId}</span>
+                    </div>
+                    <p>
+                        Nuestro equipo de ventas se contactará en breve para coordinar la entrega.
+                    </p>
+                </div>
+                <button 
+                    className="back-button"
+                    onClick={() => navigate('/')}
+                >
+                    Volver a la tienda
+                </button>
             </div>
         );
     }
